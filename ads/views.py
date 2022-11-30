@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
+
 from django.http import JsonResponse
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from ads.permissions import SelectUpdatePermission
@@ -26,6 +27,8 @@ class CategoryViewSet(ModelViewSet):
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated, SelectUpdatePermission]
+
 
 # class Logout(APIView):
 #     def post(self, request):
@@ -36,7 +39,6 @@ class UserViewSet(ModelViewSet):
 class AdViewSet(ModelViewSet):
     queryset = Ad.objects.all()
     serializer_class = AdSerializer
-    permission_classes = [IsAuthenticated, SelectUpdatePermission]
 
     def list(self, request, *args, **kwargs):
 

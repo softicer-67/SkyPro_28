@@ -1,24 +1,7 @@
 from django.http import Http404
 from rest_framework import permissions
-from rest_framework.permissions import BasePermission
 
-from ads.models import User
-
-
-# class AdUpdateDeletePermission(permissions.BasePermission):
-#     message = 'The owner, moderator or admin can update or delete an ad.'
-#
-#     def has_permission(self, request, view):
-#         if request.user.id == view.kwargs['pk']:
-#             return True
-#         elif request.user.role == User.ADMIN or request.user.role == User.MODERATOR:
-#             return True
-#         else:
-#             return False
-
-
-class Selection:
-    pass
+from ads.models import Selection
 
 
 class SelectUpdatePermission(permissions.BasePermission):

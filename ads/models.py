@@ -73,7 +73,7 @@ class Ad(models.Model):
 class Selection(models.Model):
     name = models.CharField(max_length=100)
     items = models.ManyToManyField(Ad)
-    users = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Подборка'

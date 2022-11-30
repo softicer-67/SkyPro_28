@@ -26,4 +26,6 @@ class LocationAdmin(admin.ModelAdmin):
 # @admin.register(Selection)
 # class SelectionAdmin(admin.ModelAdmin):
 #     list_display = ['name', 'items', 'owner']
+
+
 admin.site.register(Selection)
