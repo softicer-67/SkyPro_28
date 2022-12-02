@@ -6,8 +6,7 @@ from rest_framework.authtoken import views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
-from ads.views import LocationViewSet, CategoryViewSet, AdViewSet, index, UserViewSet, SelectionListView, \
-    SelectionDetailView, AdCreateView
+from ads.views import LocationViewSet, CategoryViewSet, AdViewSet, index, UserViewSet, SelectionViewSet
 
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -32,6 +31,7 @@ router.register(r'location', LocationViewSet)
 router.register(r'cat', CategoryViewSet)
 router.register(r'user', UserViewSet)
 router.register(r'ad', AdViewSet)
+router.register(r'selection', SelectionViewSet)
 
 
 urlpatterns = [
@@ -43,9 +43,9 @@ urlpatterns = [
 
     path('token/', TokenObtainPairView.as_view()),
     path('token/refresh/', TokenRefreshView.as_view()),
-    path('selection/', SelectionListView.as_view()),
-    path('selection/create/', AdCreateView.as_view()),
-    path('selection/<int:pk>/', SelectionDetailView.as_view()),
+    # path('selection/', SelectionListView.as_view()),
+    # path('selection/create/', AdCreateView.as_view()),
+    # path('selection/<int:pk>/', SelectionDetailView.as_view()),
 
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

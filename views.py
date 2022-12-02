@@ -39,6 +39,7 @@ class UserViewSet(ModelViewSet):
 class AdViewSet(ModelViewSet):
     queryset = Ad.objects.all()
     serializer_class = AdSerializer
+    permission_classes = [IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
 
@@ -69,27 +70,33 @@ class AdViewSet(ModelViewSet):
         return Response(serial.data)
 
 
-class AdDetailView(RetrieveAPIView):
-    queryset = Ad.objects.all()
-    serializer_class = AdSerializer
-    permission_classes = [IsAuthenticated, SelectUpdatePermission]
+# class AdDetailView(RetrieveAPIView):
+#     queryset = Ad.objects.all()
+#     serializer_class = AdSerializer
+#     permission_classes = [IsAuthenticated, SelectUpdatePermission]
+#
+#
+# class AdCreateView(CreateAPIView):
+#     queryset = Ad.objects.all()
+#     serializer_class = AdSerializer
 
 
-class AdCreateView(CreateAPIView):
-    queryset = Ad.objects.all()
-    serializer_class = AdSerializer
-
-
-class SelectionListView(ListAPIView):
+class SelectionViewSet(ModelViewSet):
     queryset = Selection.objects.all()
     serializer_class = SelectionSerializer
 
 
-class SelectionCreateView(CreateAPIView):
-    queryset = Selection.objects.all()
-    serializer_class = SelectionSerializer
 
-
-class SelectionDetailView(RetrieveAPIView):
-    queryset = Selection.objects.all()
-    serializer_class = SelectionDetailSerializer
+# class SelectionListView(ListAPIView):
+#     queryset = Selection.objects.all()
+#     serializer_class = SelectionSerializer
+#
+#
+# class SelectionCreateView(CreateAPIView):
+#     queryset = Selection.objects.all()
+#     serializer_class = SelectionSerializer
+#
+#
+# class SelectionDetailView(RetrieveAPIView):
+#     queryset = Selection.objects.all()
+#     serializer_class = SelectionDetailSerializer
