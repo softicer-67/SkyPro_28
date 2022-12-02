@@ -36,14 +36,20 @@ class AdSerializer(serializers.ModelSerializer):
 
 class SelectionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Ad
-        fields = 'id', 'name'
-
-
-class SelectionDetailSerializer(serializers.ModelSerializer):
-    owner = serializers.SlugRelatedField(slug_field='id', read_only=True)
-    items = AdSerializer(many=True)
-
-    class Meta:
         model = Selection
         fields = '__all__'
+
+
+# class SelectionSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Ad
+#         fields = 'id', 'name'
+#
+#
+# class SelectionDetailSerializer(serializers.ModelSerializer):
+#     owner = serializers.SlugRelatedField(slug_field='id', read_only=True)
+#     items = AdSerializer(many=True)
+#
+#     class Meta:
+#         model = Selection
+#         fields = '__all__'
