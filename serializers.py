@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from .models import *
 
 
@@ -30,8 +31,8 @@ class UserSerializer(serializers.ModelSerializer):
 class AdSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ad
-        fields = '__all__'
-        # fields = 'name', 'price', 'description', 'image', 'category'
+        # fields = '__all__'
+        fields = 'name', 'price', 'description', 'image', 'category'
 
 
 class SelectionSerializer(serializers.ModelSerializer):

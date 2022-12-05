@@ -1,6 +1,7 @@
 # -*- coding: utf8 -*-
 
 from django.http import JsonResponse
+from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from ads.permissions import SelectUpdatePermission
@@ -79,8 +80,8 @@ class SelectionViewSet(ModelViewSet):
 #     queryset = Ad.objects.all()
 #     serializer_class = AdSerializer
 #     permission_classes = [IsAuthenticated, SelectUpdatePermission]
-#
-#
+
+
 # class AdCreateView(CreateAPIView):
 #     queryset = Ad.objects.all()
 #     serializer_class = AdSerializer

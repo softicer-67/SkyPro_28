@@ -3,12 +3,11 @@ from django.conf.urls.static import static
 from django.urls import path, include, re_path
 from rest_framework import routers, permissions
 from rest_framework.authtoken import views
+from rest_framework.generics import CreateAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-
-
 from ads.views import LocationViewSet, CategoryViewSet, AdViewSet, index, UserViewSet, SelectionViewSet
-
 from rest_framework import permissions
+
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
@@ -43,6 +42,7 @@ urlpatterns = [
 
     path('token/', TokenObtainPairView.as_view()),
     path('token/refresh/', TokenRefreshView.as_view()),
+    # path('ad/create/', CreateAPIView.as_view()),
     # path('selection/', SelectionListView.as_view()),
     # path('selection/create/', AdCreateView.as_view()),
     # path('selection/<int:pk>/', SelectionDetailView.as_view()),
