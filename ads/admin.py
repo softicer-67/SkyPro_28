@@ -15,7 +15,7 @@ class AdAdmin(admin.ModelAdmin):
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['username', 'role', 'age']
+    list_display = ['username', 'role', 'age', 'email']
 
 
 @admin.register(Location)

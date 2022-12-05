@@ -9,9 +9,9 @@ class SelectUpdatePermission(permissions.BasePermission):
 
     def has_permission(self, request, view):
         try:
-            ob = Selection.objects.get(pk=view.kwargs['pk'])
-        except Exception:   # Selection.DoesNotExist:
-            raise Http404
+            ob = Selection.objects.get(pk=view.pk)
+        except Selection.DoesNotExist:
+            raise Http404('Selection does non exist')
 
         if ob.owner_id == request.user.id:
             return True

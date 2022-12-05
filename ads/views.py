@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 
 from django.http import JsonResponse
-from rest_framework.generics import RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView, ListAPIView
+from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from ads.permissions import SelectUpdatePermission
@@ -27,7 +27,7 @@ class CategoryViewSet(ModelViewSet):
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated, SelectUpdatePermission]
+    permission_classes = [IsAuthenticated]
 
 
 # class Logout(APIView):
@@ -39,6 +39,7 @@ class UserViewSet(ModelViewSet):
 class AdViewSet(ModelViewSet):
     queryset = Ad.objects.all()
     serializer_class = AdSerializer
+    permission_classes = [IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
 
@@ -69,39 +70,7 @@ class AdViewSet(ModelViewSet):
         return Response(serial.data)
 
 
-class AdDetailView(RetrieveAPIView):
-    queryset = Ad.objects.all()
-    serializer_class = AdSerializer
-    permission_classes = [IsAuthenticated, SelectUpdatePermission]
-
-
-class AdCreateView(CreateAPIView):
-    queryset = Ad.objects.all()
-    serializer_class = AdSerializer
-
-
-class AdUpdateView(UpdateAPIView):
-    queryset = Ad.objects.all()
-    serializer_class = AdSerializer
-    permission_classes = [IsAuthenticated, SelectUpdatePermission]
-
-
-class AdDeleteView(DestroyAPIView):
-    queryset = Ad.objects.all()
-    serializer_class = AdSerializer
-    permission_classes = [IsAuthenticated, SelectUpdatePermission]
-
-
-class SelectionListView(ListAPIView):
+class SelectionViewSet(ModelViewSet):
     queryset = Selection.objects.all()
     serializer_class = SelectionSerializer
-
-
-class SelectionCreateView(CreateAPIView):
-    queryset = Selection.objects.all()
-    serializer_class = SelectionSerializer
-
-
-class SelectionDetailView(RetrieveAPIView):
-    queryset = Selection.objects.all()
-    serializer_class = SelectionDetailSerializer
+    permission_classes = [IsAuthenticated]

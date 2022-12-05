@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from .models import *
 
 
@@ -30,20 +31,11 @@ class UserSerializer(serializers.ModelSerializer):
 class AdSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ad
-        fields = '__all__'
-        # fields = 'name', 'price', 'description', 'image', 'category'
+        # fields = '__all__'
+        fields = 'name', 'price', 'description', 'image', 'category'
 
 
 class SelectionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Ad
-        fields = 'id', 'name'
-
-
-class SelectionDetailSerializer(serializers.ModelSerializer):
-    owner = serializers.SlugRelatedField(slug_field='id', read_only=True)
-    items = AdSerializer(many=True)
-
     class Meta:
         model = Selection
         fields = '__all__'

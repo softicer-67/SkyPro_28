@@ -1,10 +1,13 @@
 # -*- coding: utf8 -*-
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator
 from django.db import models
+from rest_framework.validators import UniqueValidator
 
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.CharField(validators=[MinValueValidator(5)], max_length=10, unique=True, null=True)
 
     class Meta:
         verbose_name = 'Категория'
@@ -42,8 +45,10 @@ class User(AbstractUser):
     username = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=200)
     role = models.CharField(max_length=10, choices=ROLES, default='MEMBER')
-    age = models.SmallIntegerField(null=True)
+    age = models.IntegerField(validators=[MinValueValidator(9)], null=True)
     location = models.ManyToManyField(Location)
+    birth_date = models.IntegerField(null=True)
+    email = models.EmailField(max_length=100, unique=True, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Пользователь'
@@ -54,13 +59,13 @@ class User(AbstractUser):
 
 
 class Ad(models.Model):
-    name = models.CharField('Объявление', max_length=200)
+    name = models.CharField('Объявление', validators=[MinValueValidator(10)], max_length=200, null=False)
     author = models.ForeignKey(User, max_length=100, on_delete=models.CASCADE, null=True, verbose_name='Продавец')
-    price = models.DecimalField('Цена', max_digits=10, decimal_places=0)
+    price = models.DecimalField('Цена', validators=[MinValueValidator(0)], max_digits=10, decimal_places=0)
     description = models.TextField('Описание', max_length=2000, null=True)
     image = models.ImageField('Фото', upload_to='images/', null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    is_published = models.BooleanField('Опубликовано')
+    is_published = models.BooleanField('Опубликовано', default=False)
 
     class Meta:
         verbose_name = 'Товар'
